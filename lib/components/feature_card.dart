@@ -17,17 +17,21 @@ class FeatureCard extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.bodyLarge,
+
+          // style: const TextStyle(
+          //   fontSize: 18,
+          //   fontWeight: FontWeight.bold,
+          // ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 15),
         Text(
           description,
-          style: const TextStyle(
-            fontSize: 16,
-          ),
+          style: Theme.of(context).textTheme.bodySmall,
+
+          // style: const TextStyle(
+          //   fontSize: 16,
+          // ),
         ),
       ],
     );

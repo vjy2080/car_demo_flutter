@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'components/sliver_app_bar.dart';
 import 'components/info_section.dart';
+import 'models/car_model.dart';
 
 class AnimatedScrollPage extends StatefulWidget {
-  const AnimatedScrollPage({super.key});
+  final CarModel carModel;
+
+  const AnimatedScrollPage({required this.carModel, super.key});
 
   @override
   AnimatedScrollPageState createState() => AnimatedScrollPageState();
@@ -11,11 +14,8 @@ class AnimatedScrollPage extends StatefulWidget {
 
 class AnimatedScrollPageState extends State<AnimatedScrollPage> {
   final ScrollController _scrollController = ScrollController();
-  final double _imageHeight = 300.0;
-  final String _imageUrl =
-      "https://www.jarattours.co.za/wp-content/uploads/2021/07/E-Class-Exterior-11.jpg";
-  final String _title = "Mercedes-Benz E-Class";
-  bool isCollapsed = false;
+  late final double _imageHeight;
+  late bool isCollapsed = false;
   double _scaleFactor = 1.0;
   double _positionOffsetX = 0.0;
   double _positionOffsetY = 0.0;
@@ -23,12 +23,13 @@ class AnimatedScrollPageState extends State<AnimatedScrollPage> {
   @override
   void initState() {
     super.initState();
+    _imageHeight = 300.0;
     _scrollController.addListener(_scrollListener);
   }
 
   void _scrollListener() {
     double scrollOffset = _scrollController.offset;
-    bool newCollapsedState = scrollOffset >= _imageHeight - kToolbarHeight - 80;
+    bool newCollapsedState = scrollOffset >= _imageHeight - kToolbarHeight - 40;
 
     if (newCollapsedState != isCollapsed) {
       setState(() {
@@ -58,21 +59,36 @@ class AnimatedScrollPageState extends State<AnimatedScrollPage> {
           controller: _scrollController,
           slivers: [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               expandedHeight: _imageHeight,
               pinned: true,
               backgroundColor: Colors.white,
               flexibleSpace: SliverAppBarContent(
-                imageUrl: _imageUrl,
-                title: _title,
+                imageUrl: widget.carModel.imageUrl,
+                title: widget.carModel.title,
                 isCollapsed: isCollapsed,
                 scaleFactor: _scaleFactor,
                 positionOffsetX: _positionOffsetX,
                 positionOffsetY: _positionOffsetY,
               ),
+              leading: isCollapsed
+                  ? null
+                  : IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pop(); // This will go back to the previous screen
+                      },
+                    ),
             ),
             SliverToBoxAdapter(
               child: InfoSection(
-                title: _title,
+                title: widget.carModel.title,
+                description: widget.carModel.description,
+                design: widget.carModel.design,
+                performance: widget.carModel.performance,
+                technology: widget.carModel.technology,
+                safety: widget.carModel.safety,
                 isCollapsed: isCollapsed,
               ),
             ),

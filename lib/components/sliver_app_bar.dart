@@ -21,29 +21,36 @@ class SliverAppBarContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlexibleSpaceBar(
-      centerTitle: true,
+      centerTitle: false,
       title: isCollapsed
           ? Row(
               children: [
-                const SizedBox(width: 20),
-                Hero(
-                  tag: 'imageHero',
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(imageUrl),
-                    radius: 40,
+                IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                SizedBox(
+                  // color: Colors.red,
+                  width: 40.0,
+                  child: Hero(
+                    tag: 'imageHero$title',
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(imageUrl),
+                      radius: 40,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 8),
-                Expanded(
-                  child: Hero(
-                    tag: 'titleHero',
-                    child: Material(
-                      color: Colors.transparent,
-                      child: Text(
-                        title,
-                        style: const TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500),
-                      ),
+                Hero(
+                  tag: 'titleHero$title',
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Text(
+                      title,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
@@ -56,7 +63,7 @@ class SliverAppBarContent extends StatelessWidget {
               child: Transform.scale(
                 scale: scaleFactor,
                 child: Hero(
-                  tag: 'imageHero',
+                  tag: 'imageHero$title',
                   child: Image.network(
                     imageUrl,
                     fit: BoxFit.cover,
