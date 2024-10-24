@@ -16,12 +16,16 @@ class CarListPage extends StatelessWidget {
       () => Scaffold(
         backgroundColor: ThemeConstants.colorScheme,
         appBar: AppBar(
-          leading: IconButton(
-            color: ThemeConstants.invertedColorScheme,
-            icon: ThemeConstants.iconColor,
-            onPressed: () {
-              ThemeConstants.themeController.toggleTheme();
-            },
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Hero(
+              tag: 'appLogo',
+              child: Image(
+                image: AssetImage("images/logo.png"),
+                width: 30, // Set the appropriate size for the image
+                height: 30,
+              ),
+            ),
           ),
           backgroundColor: ThemeConstants.colorScheme,
           centerTitle: true,
@@ -29,6 +33,15 @@ class CarListPage extends StatelessWidget {
             'Car List',
             style: textTheme.headlineLarge!,
           ),
+          actions: [
+            IconButton(
+              color: ThemeConstants.invertedColorScheme,
+              icon: ThemeConstants.iconColor,
+              onPressed: () {
+                ThemeConstants.themeController.toggleTheme();
+              },
+            ),
+          ],
         ),
         body: ListView.builder(
           itemCount: cars.length,

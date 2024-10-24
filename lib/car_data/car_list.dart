@@ -88,4 +88,17 @@ final List<CarModel> cars = [
     safety:
         "Safety in the Veyron includes a rigid chassis, multiple airbags, and advanced braking systems, ensuring maximum protection for occupants. Its state-of-the-art engineering and construction provide confidence even at extreme speeds.",
   ),
+  CarModel(
+    imageUrl:
+        "https://www.motortrend.com/uploads/sites/10/2015/11/2014-jaguar-xk-rs-coupe-angular-front.png",
+    title: "Jaguar XK RS Coupe",
+    description:
+        "The Jaguar XK RS Coupe is a high-performance luxury sports car known for its stunning design and powerful engine.",
+    design: "Bold and aerodynamic with a distinctive British styling.",
+    performance:
+        "Powered by a supercharged V8 engine offering exhilarating acceleration.",
+    technology: "Advanced infotainment system and premium audio setup.",
+    safety:
+        "Equipped with advanced safety features and driver assistance technologies.",
+  ),
 ];

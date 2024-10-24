@@ -1,5 +1,5 @@
-import 'package:demo_app_flutter/pages/car_list_page.dart';
 import 'package:demo_app_flutter/controller/theme_controller.dart';
+import 'package:demo_app_flutter/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
@@ -9,7 +9,7 @@ void main() {
   Get.put(ThemeController(), permanent: true);
   // For slower hero animation speed 1.0 means normal speed,
   // Increase number to slower in seconds.
-  timeDilation = 3.0;
+  timeDilation = 5.0;
 
   runApp(const MyApp());
 }
@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           themeMode: themeController.themeMode.value,
-          home: const CarListPage(),
+          home: const SplashScreen(),
         );
       },
     );
