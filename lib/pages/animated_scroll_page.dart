@@ -1,4 +1,4 @@
-import 'package:demo_app_flutter/components/animated_header.dart';
+import 'package:demo_app_flutter/components/back_arrow_button.dart';
 import 'package:demo_app_flutter/components/info_section.dart';
 import 'package:demo_app_flutter/components/sliver_app_bar.dart';
 import 'package:demo_app_flutter/constants/theme_constants.dart';
@@ -72,7 +72,7 @@ class AnimatedScrollPageState extends State<AnimatedScrollPage> {
               positionOffsetX: _positionOffsetX,
               positionOffsetY: _positionOffsetY,
             ),
-            leading: !isCollapsed ? AnimatedHeader() : null,
+            leading: !isCollapsed ? BackArrowButton() : null,
           ),
           SliverToBoxAdapter(
             child: InfoSection(

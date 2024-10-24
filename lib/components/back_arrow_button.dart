@@ -1,8 +1,8 @@
 import 'package:demo_app_flutter/constants/theme_constants.dart';
 import 'package:flutter/material.dart';
 
-class AnimatedHeader extends StatelessWidget {
-  const AnimatedHeader({
+class BackArrowButton extends StatelessWidget {
+  const BackArrowButton({
     super.key,
   });
 

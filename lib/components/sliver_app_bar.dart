@@ -1,4 +1,4 @@
-import 'package:demo_app_flutter/components/animated_header.dart';
+import 'package:demo_app_flutter/components/back_arrow_button.dart';
 import 'package:demo_app_flutter/constants/theme_constants.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +32,7 @@ class SliverAppBarContent extends StatelessWidget {
           title: isCollapsed && title.isNotEmpty && imageUrl.isNotEmpty
               ? Row(
                   children: [
-                    AnimatedHeader(),
+                    BackArrowButton(),
                     SizedBox(
                       width: 40.0,
                       child: Hero(
