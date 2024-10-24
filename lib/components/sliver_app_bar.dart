@@ -1,6 +1,6 @@
-import 'package:demo_app_flutter/controller/theme_controller.dart';
+import 'package:demo_app_flutter/components/animated_header.dart';
+import 'package:demo_app_flutter/constants/theme_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SliverAppBarContent extends StatelessWidget {
   final String imageUrl;
@@ -22,10 +22,9 @@ class SliverAppBarContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.find();
-
+    final textTheme = Theme.of(context).textTheme;
     return Container(
-      color: themeController.isDarkMode.value ? Colors.black : Colors.white,
+      color: ThemeConstants.colorScheme,
       child: Container(
         margin: EdgeInsets.only(top: 40.0),
         child: FlexibleSpaceBar(
@@ -33,27 +32,8 @@ class SliverAppBarContent extends StatelessWidget {
           title: isCollapsed && title.isNotEmpty && imageUrl.isNotEmpty
               ? Row(
                   children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 16.0),
-                      child: CircleAvatar(
-                        backgroundColor:
-                            Colors.white, // Set the background color to white
-                        radius: 15, // Adjust the radius to your liking
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color:
-                                Colors.black, // Set icon color based on theme
-                            size: 20, // Adjust the icon size if needed
-                          ),
-                        ),
-                      ),
-                    ),
+                    AnimatedHeader(),
                     SizedBox(
-                      // color: Colors.red,
                       width: 40.0,
                       child: Hero(
                         tag: 'imageHero$title',
@@ -71,7 +51,7 @@ class SliverAppBarContent extends StatelessWidget {
                           color: Colors.transparent,
                           child: Text(
                             title,
-                            style: Theme.of(context).textTheme.bodyLarge!,
+                            style: textTheme.bodyLarge!,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),

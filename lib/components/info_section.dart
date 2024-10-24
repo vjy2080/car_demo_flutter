@@ -1,5 +1,5 @@
 import 'package:demo_app_flutter/components/feature_card.dart';
-import 'package:demo_app_flutter/controller/theme_controller.dart';
+import 'package:demo_app_flutter/constants/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,15 +23,19 @@ class InfoSection extends StatelessWidget {
     super.key,
   });
 
+  Widget buildFeature(String title, String description) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      child: FeatureCard(title: title, description: description),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Use GetX to access the ThemeController and react to theme changes
-    final ThemeController themeController = Get.find();
     return Obx(() {
+      final textTheme = Theme.of(context).textTheme;
       return Container(
-        color: themeController.isDarkMode.value
-            ? Colors.grey[800]
-            : Colors.grey[200],
+        color: ThemeConstants.infoBackgroundColorScheme,
         child: Column(
           children: [
             if (!isCollapsed)
@@ -44,7 +48,7 @@ class InfoSection extends StatelessWidget {
                     color: Colors.transparent,
                     child: Text(
                       title,
-                      style: Theme.of(context).textTheme.headlineLarge!,
+                      style: textTheme.headlineLarge!,
                     ),
                   ),
                 ),
@@ -57,22 +61,20 @@ class InfoSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Description:',
-                    style: Theme.of(context).textTheme.bodyLarge!,
+                    'Description',
+                    style: textTheme.headlineMedium!,
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Text(
                     description,
-                    style: Theme.of(context).textTheme.bodySmall!,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'Key Features:',
-                    style: Theme.of(context).textTheme.headlineLarge!,
+                    style: textTheme.bodySmall!,
                   ),
                   const SizedBox(height: 30),
+                  Text(
+                    'Key Features:',
+                    style: textTheme.headlineMedium!,
+                  ),
+                  const SizedBox(height: 10),
                   buildFeature('Design', design),
                   buildFeature('Performance', performance),
                   buildFeature('Technology', technology),
@@ -85,12 +87,5 @@ class InfoSection extends StatelessWidget {
         ),
       );
     });
-  }
-
-  Widget buildFeature(String title, String description) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0),
-      child: FeatureCard(title: title, description: description),
-    );
   }
 }

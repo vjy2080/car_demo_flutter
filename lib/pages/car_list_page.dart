@@ -1,6 +1,6 @@
-import 'package:demo_app_flutter/animated_scroll_page.dart';
+import 'package:demo_app_flutter/pages/animated_scroll_page.dart';
 import 'package:demo_app_flutter/car_data/car_list.dart';
-import 'package:demo_app_flutter/controller/theme_controller.dart';
+import 'package:demo_app_flutter/constants/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neumorphic_button/neumorphic_button.dart';
@@ -10,31 +10,26 @@ class CarListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.find();
+    final textTheme = Theme.of(context).textTheme;
 
     return Obx(
       () => Scaffold(
-        backgroundColor:
-            themeController.isDarkMode.value ? Colors.black : Colors.white,
+        backgroundColor: ThemeConstants.colorScheme,
         appBar: AppBar(
-            leading: IconButton(
-              color: themeController.isDarkMode.value
-                  ? Colors.white
-                  : Colors.black,
-              icon: Icon(themeController.isDarkMode.value
-                  ? Icons.light_mode
-                  : Icons.dark_mode),
-              onPressed: () {
-                themeController.toggleTheme();
-              },
-            ),
-            backgroundColor:
-                themeController.isDarkMode.value ? Colors.black : Colors.white,
-            centerTitle: true, // Specifically for android.
-            title: Text(
-              'Car List',
-              style: Theme.of(context).textTheme.headlineLarge!,
-            )),
+          leading: IconButton(
+            color: ThemeConstants.invertedColorScheme,
+            icon: ThemeConstants.iconColor,
+            onPressed: () {
+              ThemeConstants.themeController.toggleTheme();
+            },
+          ),
+          backgroundColor: ThemeConstants.colorScheme,
+          centerTitle: true,
+          title: Text(
+            'Car List',
+            style: textTheme.headlineLarge!,
+          ),
+        ),
         body: ListView.builder(
           itemCount: cars.length,
           itemBuilder: (context, index) {
@@ -46,17 +41,11 @@ class CarListPage extends StatelessWidget {
                 bottomRightShadowBlurRadius: 15,
                 bottomRightShadowSpreadRadius: 1,
                 borderWidth: 5,
-                backgroundColor: themeController.isDarkMode.value
-                    ? Colors.black
-                    : Colors.white,
+                backgroundColor: ThemeConstants.colorScheme,
                 topLeftShadowBlurRadius: 15,
                 topLeftShadowSpreadRadius: 1,
-                topLeftShadowColor: themeController.isDarkMode.value
-                    ? Colors.grey.shade900
-                    : Colors.grey.shade300,
-                bottomRightShadowColor: themeController.isDarkMode.value
-                    ? Colors.grey.shade800
-                    : Colors.grey.shade300,
+                topLeftShadowColor: ThemeConstants.topLeftShadowColor,
+                bottomRightShadowColor: ThemeConstants.bottomRightShadowColor,
                 width: double.infinity,
                 height: 100.0,
                 margin: const EdgeInsets.symmetric(vertical: 5.0),
@@ -85,13 +74,13 @@ class CarListPage extends StatelessWidget {
                           children: [
                             Text(
                               car.title,
-                              style: Theme.of(context).textTheme.bodyLarge!,
+                              style: textTheme.bodyLarge!,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
                               car.description,
-                              style: Theme.of(context).textTheme.bodySmall!,
+                              style: textTheme.bodySmall!,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),

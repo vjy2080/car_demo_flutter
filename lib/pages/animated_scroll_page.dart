@@ -1,9 +1,9 @@
+import 'package:demo_app_flutter/components/animated_header.dart';
 import 'package:demo_app_flutter/components/info_section.dart';
 import 'package:demo_app_flutter/components/sliver_app_bar.dart';
-import 'package:demo_app_flutter/controller/theme_controller.dart';
+import 'package:demo_app_flutter/constants/theme_constants.dart';
 import 'package:demo_app_flutter/models/car_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AnimatedScrollPage extends StatefulWidget {
   final CarModel carModel;
@@ -54,11 +54,8 @@ class AnimatedScrollPageState extends State<AnimatedScrollPage> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.find();
-
     return Scaffold(
-      backgroundColor:
-          themeController.isDarkMode.value ? Colors.black : Colors.white,
+      backgroundColor: ThemeConstants.colorScheme,
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
@@ -75,35 +72,7 @@ class AnimatedScrollPageState extends State<AnimatedScrollPage> {
               positionOffsetX: _positionOffsetX,
               positionOffsetY: _positionOffsetY,
             ),
-            leading: isCollapsed
-                ? null
-                : Container(
-                    margin: EdgeInsets.symmetric(horizontal: 16.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle, // Make sure the shape is a circle
-                      color: Colors
-                          .white, // Set the background color of the avatar
-                      border: Border.all(
-                        color: Colors.black, // Set the border color
-                        width: 1, // Set the border thickness
-                      ),
-                    ),
-                    child: CircleAvatar(
-                      backgroundColor:
-                          Colors.white, // Set the background color to white
-                      radius: 15, // Adjust the radius to your liking
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Colors.black, // Set icon color based on theme
-                          size: 20, // Adjust the icon size if needed
-                        ),
-                      ),
-                    ),
-                  ),
+            leading: !isCollapsed ? AnimatedHeader() : null,
           ),
           SliverToBoxAdapter(
             child: InfoSection(

@@ -12,26 +12,19 @@ class FeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.bodyLarge!,
-
-          // style: const TextStyle(
-          //   fontSize: 18,
-          //   fontWeight: FontWeight.bold,
-          // ),
+          style: textTheme.bodyLarge!,
         ),
-        const SizedBox(height: 15),
+        const SizedBox(height: 20),
         Text(
           description,
-          style: Theme.of(context).textTheme.bodySmall!,
-
-          // style: const TextStyle(
-          //   fontSize: 16,
-          // ),
+          style: textTheme.bodySmall!,
         ),
       ],
     );
