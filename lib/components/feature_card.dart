@@ -17,7 +17,7 @@ class FeatureCard extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge!,
 
           // style: const TextStyle(
           //   fontSize: 18,
@@ -27,7 +27,7 @@ class FeatureCard extends StatelessWidget {
         const SizedBox(height: 15),
         Text(
           description,
-          style: Theme.of(context).textTheme.bodySmall,
+          style: Theme.of(context).textTheme.bodySmall!,
 
           // style: const TextStyle(
           //   fontSize: 16,
